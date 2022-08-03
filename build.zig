@@ -7,6 +7,10 @@ pub fn build(b: *std.build.Builder) void {
     lib.setBuildMode(mode);
     lib.install();
 
+    const libs = b.addStaticLibrary("nanoid", "zig-nanoid/src/nanoid.zig");
+    libs.setBuildMode(mode);
+    libs.install();
+
     const main_tests = b.addTest("zig-cli/src/tests.zig");
     main_tests.setBuildMode(mode);
 
@@ -15,6 +19,7 @@ pub fn build(b: *std.build.Builder) void {
 
     const origin = b.addExecutable("random", "example/random.zig");
     origin.addPackagePath("zig-cli", "zig-cli/src/main.zig");
+    origin.addPackagePath("nanoid", "zig-nanoid/src/nanoid.zig");
     origin.setBuildMode(mode);
     origin.install();
 
