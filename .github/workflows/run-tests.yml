@@ -12,5 +12,6 @@ jobs:
       - uses: goto-bus-stop/setup-zig@v1
         with:
           version: 0.9.1
-      - run: zig fmt --check *.zig src/*.zig
+      - run: git clone https://github.com/sam701/zig-cli
+      - run: zig fmt --check *.zig zig-cli/src/*.zig
       - run: zig build test
